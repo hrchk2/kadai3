@@ -9,9 +9,11 @@
         <th>introduction</th>
         <th><%= @user.introduction %></th>
     </tr>
-    
+    <% if @user == current_user %>
     <%= link_to "USER EDIT", edit_user_path(@user.id),class:"btn btn-outline-secondary btn-block" %>
-    
+    <% else %>
+    <%= link_to "USER EDIT", user_path(current_user.id),class:"btn btn-outline-secondary btn-block" %>
+    <% end %>
 </tbody>
 
 <!--投稿フォーム-->
