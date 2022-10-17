@@ -9,11 +9,7 @@
         <th>introduction</th>
         <th><%= @user.introduction %></th>
     </tr>
-    <% if @user == current_user %>
     <%= link_to "USER EDIT", edit_user_path(@user.id),class:"btn btn-outline-secondary btn-block" %>
-    <% else %>
-    <%= link_to "USER EDIT", user_path(current_user.id),class:"btn btn-outline-secondary btn-block" %>
-    <% end %>
 </tbody>
 
 <!--投稿フォーム-->
@@ -41,11 +37,10 @@
       <% @books.each do |book| %>
         <tbody>
         <tr>
-        <td><%=image_tag @user.get_profile_image(100,100) %></td>
+        <td><%=link_to (image_tag book.user.get_profile_image(100,100)),user_path(book.user.id) %></td>
         <td><%=link_to book.title,book_path(book.id) %></td>
         <td><%= book.body %></td>
         </tr>
         </tbody>
       <% end %>
     </table>
-    

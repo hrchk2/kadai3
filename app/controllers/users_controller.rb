@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    is_matching_login_user
     @user = User.find(params[:id])
   end
   
@@ -31,6 +32,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:profile_image, :name, :email,:introduction)
   end
-
+  
+  def is_matching_login_user
+    user_id = params[:id].to_i
+    login_user_id = current_user.id
+    if(user_id != login_user_id)
+      redirect_to user_path(current_user.id)
+    end
+  end
 
 end
