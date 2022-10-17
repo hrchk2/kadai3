@@ -2,6 +2,16 @@
 <h1>index</h1>
 
 
+<% if @booknew.errors.any? %>
+  <%= @booknew.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @booknew.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <!--user info-->
 <h2>User info</h2>
 <tbody>
