@@ -1,0 +1,49 @@
+<h2>User info</h2>
+<tbody>
+    <%= image_tag @user.get_profile_image(100,100) %>
+    <tr>
+        <th>name</th>
+        <th><%= @user.name %></th>
+    </tr>
+    <tr>
+        <th>introduction</th>
+        <th><%= @user.introduction %></th>
+    </tr>
+    
+    <%= link_to "USER EDIT", edit_user_path(@user.id),class:"btn btn-outline-secondary btn-block" %>
+    
+</tbody>
+
+<!--投稿フォーム-->
+<h1>New book</h1>
+<%= form_with model: @booknew do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+	
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+	
+  <%= f.submit 'Create Book' %>
+<% end %>
+
+<table>
+  <h1>Books</h1>
+    <thead>
+        <tr>
+         <th>Title</th>
+         <th>Opinion</th>
+         <th colspan="3"></th>
+        </tr>
+      </thead>
+      
+      <% @books.each do |book| %>
+        <tbody>
+        <tr>
+        <td><%=image_tag @user.get_profile_image(100,100) %></td>
+        <td><%=link_to book.title,book_path(book.id) %></td>
+        <td><%= book.body %></td>
+        </tr>
+        </tbody>
+      <% end %>
+    </table>
+    
