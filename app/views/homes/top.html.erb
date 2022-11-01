@@ -7,6 +7,7 @@
     <%= link_to "Log in",user_path(current_user.id) %>
     <%= link_to "Sign up",user_path(current_user.id) %>
   <% else %>
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
     <%= link_to "Log in", new_user_session_path %>
     <%= link_to "Sign up",new_user_registration_path %>
   <% end %>

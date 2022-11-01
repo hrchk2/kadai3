@@ -16,6 +16,13 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+  
     
   validates :name, {uniqueness: true,length:{minimum: 2, maximum: 20 }}
   validates :introduction, length:{maximum:50}
